@@ -31,7 +31,7 @@ for item in seven_day:
            print ( toAddress[i] )
            report = item.find_all("div", {"class": "o-layout__left@lg o-grid__item@lg"})[0].get_text()
            print( item.find_all("div", {"class": "o-layout__left@lg o-grid__item@lg"})[0].get_text())
-           print("####")
+           print("#####")
 
     conn.sendmail('trial0error0@gmail.com', toAddress," Subject: Train Alert!\n\nAttention!\n\nAware about Train Disturbance!\n\nCareful!:\nTrain notifier\n {}.".format(report))
     conn.quit()

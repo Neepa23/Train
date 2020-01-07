@@ -1,2 +1,27 @@
 ssh -i /home/nipa/subhstart/ubantu_keypair.pem -A ubuntu@13.59.86.5 ( ssh into your ec2 instance)
 scp -i /home/nipa/subhstart/ubantu_keypair.pem /home/nipa/subhstart/train_notifier_disturbution_say_sorry.py ubuntu@ec2-13-59-86-5.us-east-2.compute.amazonaws.com:/home/ubuntu (file transfer from ubuntu local machine to aws instance)
+
+
+How to start cron job
+
+
+sudo service cron  start
+crontab -e
+ssh -i /home/nipa/subhstart/ubantu_keypair.pem -A ubuntu@13.59.86.5
+
+nano  grey_sorry(file name).cron
+*/3 * * * * python3 (train_notifier_grey.py(file name)
+Ctrl+o( for save purpose)
+crontab -l (for load purpose)
+crontab grey_sorry.cron
+wait for program run.
+
+
+
+How to stop all cron jobs:
+
+If you have to stop all the cron jobs:
+
+sudo service crond stop
+sudo service crond status
+sudo service crond restart

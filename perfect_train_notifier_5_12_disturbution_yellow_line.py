@@ -1,7 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 import smtplib
+<<<<<<< HEAD
 import boto3
+=======
+
+>>>>>>> a2663b40a926797ff87b3a4fe87e2eccf57e8e51
 
 
 
@@ -34,7 +38,11 @@ for item in seven_day:
            print( item.find_all("div", {"class": "o-layout__left@lg o-grid__item@lg"})[0].get_text())
            print("###")
 
+<<<<<<< HEAD
     conn.sendmail ( 'trial0error0@gmail.com' , toAddress ,f'Subject: Train Alert!\n\nAttention!\n\nAware about Train Disturbance!\n\nCareful!:\nTrain notifier\n{report}' )
+=======
+    conn.sendmail ( 'trial0error0@gmail.com' , toAddress,"Subject: Train Alert!\n\nAttention!\n\nAware about Train Disturbance!\n\nCareful!:\nTrain notifier\n" .format(report))
+>>>>>>> a2663b40a926797ff87b3a4fe87e2eccf57e8e51
     conn.quit()
 
 #forecast_items = seven_day.find_all(class_ = "tombstone-container")

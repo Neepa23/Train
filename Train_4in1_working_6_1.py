@@ -32,19 +32,4 @@ conn.sendmail ( 'trial0error0@gmail.com' , toAddress,"Subject: Train Alert!\n\nA
 conn.quit()
 
 
-# for item in seven_day:
-#print ( item.get_text () )
-# for item in seven_day:
 
-
-# #forecast_items = seven_day.find_all(class_ = "tombstone-container")
-# # items = seven_day.find_all(class_ = "o-layout@lg o-grid@lg c-combined-messages__title")
-# # tonight = items[0]
-# # print(items)
-# # print(tonight)
-# # #print(forecast_items)
-# # period = tonight.find(class_ ="o-layout__left@lg o-grid__item@lg").get_text()
-# # # # period = forecast_items.find_all(class_ ="o-layout__left@lg o-grid__item@lg").get_text()
-# # # # #period = soup.find(".c-disruptions-item__title c-combined-messages__link c-combined-messages__link--disruption .o-layout__left@lg o-grid__item@lg").get_text()
-# # print(period)
-#

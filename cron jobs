@@ -1,0 +1,26 @@
+How to start cron job
+
+
+sudo service cron  start
+crontab -e
+
+
+nano houselink.cron
+(i to insert)* 12 * * * python3 right_move_houselink_correct_17_02.py
+Ctrl+o( for save purpose)
+after enter
+Ctrl+X
+crontab house_link.cron
+crontab -l (for load purpose)
+wait for program run.
+
+
+
+nano train_notification.cron
+(i to insert)* 7,15 * * * python3 Train_4in1_working_6_1.py
+Ctrl+o( for save purpose)
+after enter
+Ctrl+X
+crontab train_notification.cron
+crontab -l (for load purpose)
+wait for program run.	 

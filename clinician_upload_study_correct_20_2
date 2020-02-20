@@ -1,0 +1,80 @@
+
+from tkinter import *
+#import java
+import paste as paste
+import copy as copy
+from selenium import webdriver
+from time import sleep
+#import java.util.concurrent.TimeUnit;
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
+#import java.util.concurrent.TimeUnit
+#from selenium.webdriver.support.wait import WebDriverWait
+#import time
+
+window = Tk ()
+window.title ( " Cydar Dev Testing " )
+# window.geometry('450X200')
+window.minsize ( 600 , 400 )
+lbl = Label ( window , text = " Enter your URL" , font = ("Arial Bold" , 25) )
+lbl.grid ( column = 1 , row = 0 )
+Text = Entry ( window , width = 30 )
+Text.grid ( column = 1 , row = 2 )
+Text.bind ( '<Control-v>' , paste )
+# Text.bind('<Control-x>', cut)
+Text.bind ( '<Control-c>' , copy )
+
+
+def paste():
+    window.Text.insert ( INSERT , window.Text.clipboard_get () )
+
+
+def cut():
+    copy ()
+    window.Text.delete ( "sel.first" , "sel.last" )
+
+
+def copy():
+    window.Text.clipboard_clear ()
+    window.Text.clipboard ( window.Text.selection_get () )
+
+
+# Text.insert(INSERT, Text.clipboard_get())
+
+def clicked():
+    a = Text.get ()
+    b = (a[8:-1])
+    print ( b )
+    driver = webdriver.Chrome (r"C:\Users\neepa.pandya\Desktop\webscrapping_19_11\Driver\chromedriver_win32 (5)\chromedriver.exe" )
+    #time.sleep ( 100 )
+    driver.maximize_window()
+    driver.get ( a )
+    #driver.get ( "https://vault-ev74rc1us-ev74-us-east-1.cydardev.cloud/" )
+    # driver.implicitly_wait ( 10 )
+    username = driver.find_element_by_id ( "id_username" ).send_keys ( "clinician1@localhost" )
+    password = driver.find_element_by_id ( "id_password" ).send_keys ( "penguin8" )
+    driver.find_element_by_id ( "login" ).click ()
+    #driver.find_element ( By.LINK_TEXT , 'View site' ).click ()
+    #driver.findElement ( By.linkText ( "View site" ) ).click ()
+    #driver.findElement ( By.partialLinkText ( "View site" ) ).getText()
+    #print("testa")
+    sleep(5)
+    #driver.find_element_by_xpath( "//a[text()='View site']" ).click()
+    driver.find_element(By.LINK_TEXT, 'Upload Study from ZIP').click()
+    sleep(2)
+    driver.find_element_by_name ( "zip_file" ).send_keys (
+        "C:\\Users\\neepa.pandya\\Documents\\Neepa\\Dicoms\\edit_free_dicom.zip" )
+    #sleep(10)
+    driver.find_element_by_xpath ( "//a[text()='Studies']").click()
+    #driver.find_element_by_xpath( "//a[text()='Change password']" ).click()
+    #print ( "testb" )
+    res = "The URL is:" + a
+    output.configure ( text = res )
+output = Label ( window , bg = 'brown' , fg = 'white' , font = ("Arial Bold" , 10) )
+output.grid ( column = 1 , row = 6 )
+btn = Button ( window , text = "Click Me" , command = clicked , font = ("Arial Bold" , 15) )
+btn.grid ( column = 1 , row = 4 )
+window.mainloop ()

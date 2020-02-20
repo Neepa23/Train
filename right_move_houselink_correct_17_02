@@ -1,0 +1,23 @@
+import requests
+from bs4 import BeautifulSoup
+import re
+import smtplib
+# ------------------- E-mail list ------------------------
+toAddress = [ 'upadhyayniparth@gmail.com']
+page = requests.get (
+    "https://www.rightmove.co.uk/property-for-sale/find.html?locationIdentifier=REGION%5E1263&maxBedrooms=4&minBedrooms=3&maxPrice=375000&minPrice=290000&sortType=6&propertyTypes=detached%2Csemi-detached%2Cterraced&primaryDisplayPropertyType=houses&maxDaysSinceAdded=3&mustHave=&dontShow=&furnishTypes=&keywords=" )
+soup = BeautifulSoup ( page.content , 'html.parser' )
+house = soup.findAll( "a", {"class": "propertyCard-link", "data-test": "property-details" ,'href': True}, href =re.compile("(/property-for-sale/)+(property)+(-)+([0-9]*)+(.html)+") )
+#print(house)
+conn = smtplib.SMTP ( 'smtp.gmail.com' , 587 )  # smtp address and port
+conn.ehlo ()  # call this to start the connection
+conn.starttls ()  # starts tls encryption. When we send our password it will be encrypted.
+conn.login ( 'trial0error0@gmail.com' , '0banana0' )
+#report = ""
+print ( 'Sent notificaton e-mails for the following recipients:\n' )
+print ( toAddress )
+dirty_text = '\n'.join([('https://www.rightmove.co.uk' + link['href']) for link in house])
+print(dirty_text)
+report = '\n'.join([('https://www.rightmove.co.uk' + link['href']) for link in house])
+conn.sendmail ( 'trial0error0@gmail.com' , toAddress,"Subject: House Alert!\n\nAttention!\n\nNew houses are added!\n{}".format(report))
+conn.quit()

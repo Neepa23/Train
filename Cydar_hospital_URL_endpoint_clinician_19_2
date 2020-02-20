@@ -1,0 +1,140 @@
+# import tkinter as tk
+# import tkinter as tk
+# from tkinter import ttk
+from time import sleep
+from tkinter import *
+#import java
+import paste as paste
+import copy as copy
+from selenium import webdriver
+#import java.util.concurrent.TimeUnit;
+from selenium.webdriver.common.by import By
+#import java.util.concurrent.TimeUnit
+#from selenium.webdriver.support.wait import WebDriverWait
+#import time
+
+window = Tk ()
+window.title ( " Cydar Dev Testing " )
+# window.geometry('450X200')
+window.minsize ( 600 , 400 )
+lbl = Label ( window , text = " Enter your URL" , font = ("Arial Bold" , 25) )
+lbl.grid ( column = 1 , row = 0 )
+Text = Entry ( window , width = 30 )
+Text.grid ( column = 1 , row = 2 )
+Text.bind ( '<Control-v>' , paste )
+# Text.bind('<Control-x>', cut)
+Text.bind ( '<Control-c>' , copy )
+
+
+def paste():
+    window.Text.insert ( INSERT , window.Text.clipboard_get () )
+
+
+def cut():
+    copy ()
+    window.Text.delete ( "sel.first" , "sel.last" )
+
+
+def copy():
+    window.Text.clipboard_clear ()
+    window.Text.clipboard ( window.Text.selection_get () )
+
+
+# Text.insert(INSERT, Text.clipboard_get())
+
+def clicked():
+    a = Text.get ()
+    b = (a[8:-1])
+    print ( b )
+    driver = webdriver.Chrome (
+        r"C:\Users\neepa.pandya\Desktop\webscrapping_19_11\Driver\chromedriver_win32 (5)\chromedriver.exe" )
+    #driver.manage ().timeouts ().implicitlyWait ( 10 , TimeUnit.SECONDS )
+    # time.sleep ( 100 )
+    driver.get ( a )
+    driver.maximize_window ()
+    #driver.implicitly_wait( 100)
+    #river.implicitly_wait ( 10, TimeUnit.SECONDS )
+    #driver.manage ().timeouts().implicitlyWait ( 10 , TimeUnit.SECONDS )
+    driver.implicitly_wait ( 10 )
+    username = driver.find_element_by_id ( "id_username" ).send_keys ( "super.admin@localhost" )
+
+    password = driver.find_element_by_id ( "id_password" ).send_keys ( "penguin8" )
+
+    driver.find_element_by_id ( "login" ).click ()
+    driver.find_element ( By.PARTIAL_LINK_TEXT , 'Hospitals' ).click ()
+    driver.find_element ( By.LINK_TEXT , 'Test hospital' ).click ()
+    driver.find_element_by_name ( "cydar_host" ).clear ()
+    driver.find_element_by_name ( "cydar_host" ).send_keys ( b )
+    driver.find_element_by_name ( "_save" ).click ()
+    driver.find_element ( By.PARTIAL_LINK_TEXT , 'Home' ).click ()
+    driver.find_element ( By.PARTIAL_LINK_TEXT , 'ITG Endpoints' ).click ()
+    driver.find_element_by_xpath ( "//a[@class='addlink']" ).click ()
+
+    driver.find_element_by_name ( "hospital" ).send_keys ( 'Test hospital, London' )
+    driver.find_element_by_name ( "release" ).send_keys (
+        "Cydar ITG platform Firefox 60.1.0ESR 64-bit x86 on Windows" )
+    driver.find_element_by_name ( "intervention_room" ).send_keys ( "Theatre 1" )
+    driver.find_element_by_name ( "asset_id" ).send_keys ( "QATEST01" )
+    #driver.find_element_by_xpath( "//a[@name='fluoro_set_file']").sendkeys("SiemensZeego_Rm10_RFH.yaml")
+    driver.find_element_by_name ( "fluoro_set_file" ).send_keys ( "SiemensZeego_Rm10_RFH.yaml" )
+    driver.find_element_by_name ( "certificate_fingerprint" ).send_keys ( "9895a539c9cbd5b1b93f65f9db05b191b28839d7" )
+    driver.find_element_by_name ( "_save" ).click ()
+    driver.find_element_by_xpath ( "//a[@class='addlink']" ).click ()
+    driver.find_element_by_name ( "hospital" ).send_keys ( 'Test hospital, London' )
+    driver.find_element_by_name ( "release" ).send_keys (
+        "Cydar ITG platform Firefox 60.1.0ESR 64-bit x86 on Windows" )
+    driver.find_element_by_name ( "intervention_room" ).send_keys ( "Theatre 2" )
+    driver.find_element_by_name ( "asset_id" ).send_keys ( "QATEST02" )
+    # driver.find_element_by_xpath( "//a[@name='fluoro_set_file']").sendkeys("SiemensZeego_Rm10_RFH.yaml")
+    driver.find_element_by_name ( "fluoro_set_file" ).send_keys ( "SiemensCiosAlpha.yaml" )
+    driver.find_element_by_name ( "certificate_fingerprint" ).send_keys ( "8718bbd7bbf559064a2d2074a48c6dd4224ab884" )
+    driver.find_element_by_name ( "_save" ).click ()
+    driver.find_element_by_xpath ( "//a[@class='addlink']" ).click ()
+    driver.find_element_by_name ( "hospital" ).send_keys ( 'Test hospital, London' )
+    driver.find_element_by_name ( "release" ).send_keys (
+        "Cydar ITG platform Firefox 60.1.0ESR 64-bit x86 on Windows" )
+    driver.find_element_by_name ( "intervention_room" ).send_keys ( "Theatre 3" )
+    driver.find_element_by_name ( "asset_id" ).send_keys ( "QATEST03" )
+    # driver.find_element_by_xpath( "//a[@name='fluoro_set_file']").sendkeys("SiemensZeego_Rm10_RFH.yaml")
+    driver.find_element_by_name ( "fluoro_set_file" ).send_keys ( "PhilipsHybrid.yaml" )
+    driver.find_element_by_name ( "certificate_fingerprint" ).send_keys ( "4b628f79d10c2aaf8a32eed3e50ae78b3da4ed49" )
+    driver.find_element_by_name ( "_save" ).click ()
+    driver.find_element_by_xpath ( "//a[@class='addlink']" ).click ()
+    driver.find_element_by_name ( "hospital" ).send_keys ( 'Test hospital, London' )
+    driver.find_element_by_name ( "release" ).send_keys (
+        "Cydar ITG platform Firefox 60.1.0ESR 64-bit x86 on Windows" )
+    driver.find_element_by_name ( "intervention_room" ).send_keys ( "Theatre 4" )
+    driver.find_element_by_name ( "asset_id" ).send_keys ( "QATEST04" )
+    # driver.find_element_by_xpath( "//a[@name='fluoro_set_file']").sendkeys("SiemensZeego_Rm10_RFH.yaml")
+    driver.find_element_by_name ( "fluoro_set_file" ).send_keys ( "DUKE_OR33.yaml" )
+    driver.find_element_by_name ( "certificate_fingerprint" ).send_keys ( "a87b1db9abde4eca5cae0f5e27dd5d4fb66ea263" )
+    driver.find_element_by_name ( "_save" ).click ()
+    driver.find_element ( By.PARTIAL_LINK_TEXT , 'Home' ).click ()
+    driver.find_element ( By.PARTIAL_LINK_TEXT , 'Users' ).click ()
+    driver.find_element ( By.PARTIAL_LINK_TEXT , 'clinician1@localhost' ).click ()
+    driver.find_element_by_name ( "hospital" ).send_keys ( "Test hospital, London" )
+    driver.find_element_by_id ( "id_is_staff" ).click ()
+    driver.find_element_by_id ( "id_is_superuser" ).click ()
+    driver.find_element_by_id ( "id_receives_upload_notification_emails" ).click ()
+    driver.find_element_by_id ( "id_receives_ringmaster_emails" ).click ()
+    driver.find_element_by_id ( "id_receives_ivnc_manual_processing_emails" ).click ()
+    driver.find_element_by_id ( "id_receives_ivnc_automatic_processing_emails" ).click ()
+    driver.find_element_by_id ( "id_receives_preop_worker_notification_emails" ).click ()
+    driver.find_element_by_id ( "id_receives_qms_report_emails" ).click ()
+    driver.find_element_by_name ( "_save" ).click ()
+    driver.find_element(By.PARTIAL_LINK_TEXT, 'super.admin@localhost').click()
+    driver.find_element_by_id("id_is_clinician").click()
+    driver.find_element_by_name("hospital").send_keys("Test hospital, London")
+    driver.find_element_by_name("_save").click()
+    driver.find_element ( By.PARTIAL_LINK_TEXT , 'Home' ).click ()
+    driver.find_element_by_xpath ( "//a[text()='View site']" ).click ()
+    sleep ( 2 )
+    res = "The URL is:" + a
+    output.configure ( text = res )
+
+
+output = Label ( window , bg = 'brown' , fg = 'white' , font = ("Arial Bold" , 10) )
+output.grid ( column = 1 , row = 6 )
+btn = Button ( window , text = "Click Me" , command = clicked , font = ("Arial Bold" , 15) )
+btn.grid ( column = 1 , row = 4 )
+window.mainloop ()

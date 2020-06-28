@@ -25,3 +25,4 @@ If you have to stop all the cron jobs:
 sudo service crond stop
 sudo service crond status
 sudo service crond restart
+latest stopped all cron jobs with ssh -i /home/neepa/Neepa_project/house/banana_keypair.pem -A ubuntu@3.20.235.206
